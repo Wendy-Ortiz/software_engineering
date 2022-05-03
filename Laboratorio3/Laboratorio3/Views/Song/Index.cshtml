@@ -1,0 +1,29 @@
+﻿@model Laboratorio3.Models.SongModel;
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+@{
+    ViewData["Title"] ="Songs";
+}
+<h1>@ViewBag.MainTitle</h1>
+<body> 
+    <div style = "width:50%; display: table-cell;">
+        <h5>Name: </h5><br>
+        <h5>Autor: </h5><br><br>
+        <h5>Gender: </h5><br><br>
+        <h5>Album: </h5><br>
+        <h5>Released date: </h5><br>
+    </div>
+
+    <div style = "width:50%; display: table-cell;">
+        <p style="border: ridge #808080 1px;">@Model.Nombre</p><br>
+        <p style="border: ridge #808080 1px;">@Model.Autor</p><br>
+        <p style="border: ridge #808080 1px;">@Model.Genero</p><br>
+        <p style="border: ridge #808080 1px;">@Model.Album</p><br>
+        <p style="border: ridge #808080 1px;">@Model.Anio</p><br>
+    </div>
+</body>
+</>
+
+<div>
+    <button>I am a button</button>
+</div>

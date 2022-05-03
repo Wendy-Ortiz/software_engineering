@@ -1,0 +1,44 @@
+﻿@model List<Laboratorio3.Models.MovieModel>;
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+@{
+    ViewData["Title"] ="Movies";
+}
+<h1>@ViewBag.MainTitle</h1>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Movie title</th>
+                <th>Gender</th>
+                <th>Released date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Genero</td>
+                    <td>@item.Anio</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <button>I am a button</button>
+</div>
+<!-- comandos que empiezan con arroba son los comando
+razor que nos permiten hacer diferentes acciones como por ejemplo:
+- Definir con qué modelo vamos a trabajar en la vista:
+(arroba)model List<Laboratorio3.Models.MovieModel>;
+- Definir qué tipo de título tendrá la página
+(arroba){
+ViewData["Title"] = "Movies";
+}
+- Definir qué valores del modelo se va a utilizar
+Ejemplo: (arroba) item.Name
+- Crear un ciclo para iterar la lista de modelos y generar el mismo
+código de la tabla una y otra vez -->
