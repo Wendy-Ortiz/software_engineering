@@ -44,5 +44,55 @@ namespace Laboratorio5.Handlers
             }
             return paises;
         }
+        public bool CrearPais(PaisModel pais) //se necesita tener la consulta parametrizada
+        {
+            var consulta = @"INSERT INTO [dbo].[Pais] ([Nombre],[Idioma] ,[Continente])
+                            VALUES(@Nombre, @Idioma, @Continente) ";
+            var comandoParaConsulta = new SqlCommand(consulta, conexion);
+            
+            comandoParaConsulta.Parameters.AddWithValue("@Nombre", pais.Nombre);
+            comandoParaConsulta.Parameters.AddWithValue("@Idioma", pais.Idioma);
+            comandoParaConsulta.Parameters.AddWithValue("@Continente", pais.Continente);
+            //encargados de transferir los valores que se indiquen al respectivo parámetro
+            conexion.Open();
+            /*etorna un 0 cuando algo a nivel de SQL al ejecutar la consulta falla y
+            un número mayor que cero cuando se modificó una tupla correctamente*/
+            bool exito = comandoParaConsulta.ExecuteNonQuery() >= 1; //se ejecuta el query
+            conexion.Close();
+            return exito;
+        }
+        public bool EditarPais(PaisModel pais) //se necesita tener la consulta parametrizada
+        {
+            var consulta = @"UPDATE [dbo].[Pais] SET Nombre = @Nombre, 
+                                Idioma = @Idioma, 
+                                Continente = @Continente 
+                                WHERE Id=@Id ";
+            var comandoParaConsulta = new SqlCommand(consulta, conexion);
+
+            comandoParaConsulta.Parameters.AddWithValue("@Nombre", pais.Nombre);
+            comandoParaConsulta.Parameters.AddWithValue("@Idioma", pais.Idioma);
+            comandoParaConsulta.Parameters.AddWithValue("@Continente", pais.Continente);
+            comandoParaConsulta.Parameters.AddWithValue("@Id", pais.Id);
+            //encargados de transferir los valores que se indiquen al respectivo parámetro
+            conexion.Open();
+            /*etorna un 0 cuando algo a nivel de SQL al ejecutar la consulta falla y
+            un número mayor que cero cuando se modificó una tupla correctamente*/
+            bool exito = comandoParaConsulta.ExecuteNonQuery() >= 1; //se ejecuta el query
+            conexion.Close();
+            return exito;
+        }
+        public bool BorrarPais(PaisModel pais) //se necesita tener la consulta parametrizada
+        {
+            var consulta = @"Delete [dbo].[pais] where Id = @id";
+            var comandoParaConsulta = new SqlCommand(consulta, conexion);
+            comandoParaConsulta.Parameters.AddWithValue("@Id", pais.Id);
+            //encargados de transferir los valores que se indiquen al respectivo parámetro
+            conexion.Open();
+            /*etorna un 0 cuando algo a nivel de SQL al ejecutar la consulta falla y
+            un número mayor que cero cuando se modificó una tupla correctamente*/
+            bool exito = comandoParaConsulta.ExecuteNonQuery() >= 1; //se ejecuta el query
+            conexion.Close();
+            return exito;
+        }
     }
 }
