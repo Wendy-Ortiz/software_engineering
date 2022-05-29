@@ -1,0 +1,31 @@
+﻿@model Laboratorio5.Models.PaisModel
+@{
+    ViewBag.Title = "Borrar este País";
+}
+<html>
+    <head>
+    </head>
+    <body>
+        @using (Html.BeginForm("borrarPais", "paises", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        { //auxiliar que crea el cuerpo del formulario
+            @Html.AntiForgeryToken()
+            <h1>Confirmación de eliminación de país</h1>
+            @Html.HiddenFor(model=>model.Id)
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre)
+                    @Html.TextBoxFor(model => model.Nombre, htmlAttributes: new { @readonly="readonly" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Continente)
+                    @Html.TextBoxFor(model => model.Continente, htmlAttributes: new { @readonly="readonly" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Idioma)
+                    @Html.TextBoxFor(model => model.Idioma, htmlAttributes: new { @readonly="readonly" })
+                </div>
+                <input type="submit" class="btn btn-success" value="Confirmar" />
+            </div>
+        }
+    </body>
+</html>
